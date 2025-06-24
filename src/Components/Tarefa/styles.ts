@@ -1,0 +1,95 @@
+import styled from 'styled-components'
+import variaveis from '../../styles/variaveis'
+
+import * as enums from '../../utils/enums/tarefa'
+
+type TagProps = {
+  prioridade?: enums.Prioridade
+  status?: enums.Status
+  parametro: 'status' | 'prioridade'
+}
+
+function retornaCorDeFundo(props: TagProps) {
+  if (props.parametro === 'status') {
+    switch (props.status) {
+      case enums.Status.PENDENTE:
+        return variaveis.amarelo
+      case enums.Status.CONCLUIDA:
+        return variaveis.verde
+      default:
+        return '#ccc'
+    }
+  } else if (props.parametro === 'prioridade') {
+    switch (props.prioridade) {
+      case enums.Prioridade.URGENTE:
+        return variaveis.vermelho
+      case enums.Prioridade.IMPORTANTE:
+        return variaveis.amarelo2
+      case enums.Prioridade.NORMAL:
+        return variaveis.verde
+      default:
+        return '#ccc'
+    }
+  }
+}
+
+export const Card = styled.div`
+  background-color: #fcfcfc;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 32px;
+`
+
+export const Titulo = styled.h3`
+  font-size: 18px;
+  font-weight: bold;
+`
+
+export const Tag = styled.span<TagProps>`
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: ${(props) => retornaCorDeFundo(props)};
+  margin-right: 8px;
+  border-radius: 8px;
+  display: inline-block;
+`
+
+export const Descricao = styled.textarea`
+  color: #8b8b8b;
+  font-size: 14px;
+  line-height: 24px;
+  font-family: Roboto Mono, monospace;
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+  resize: none;
+  border: none;
+  background-color: transparent;
+`
+
+export const BarraAcoes = styled.div`
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 16px;
+`
+
+export const Botao = styled.button`
+  color: #fff;
+  background-color: #2f3640;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 8px 12px;
+  margin-right: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+`
+export const BotaoSalvar = styled(Botao)`
+  background-color: ${variaveis.verde};
+`
+
+export const BotaoCancelarRemover = styled(Botao)`
+  background-color: ${variaveis.vermelho};
+`
