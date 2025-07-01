@@ -1,13 +1,17 @@
 import styled from 'styled-components'
-import { Props } from '.'
+import variaveis from '../../styles/variaveis'
 
-type PropsSemLegendaESemContador = Omit<Props, `contador` | `legenda`>
+type Props = {
+  $ativo: boolean
+}
 
-export const Card = styled.div<PropsSemLegendaESemContador>`
+export const Card = styled.div<Props>`
   padding: 8px;
-  border: 1px solid ${(props) => (props.ativo ? '#1e90ff' : '#a1a1a1')};
-  color: ${(props) => (props.ativo ? '#1e90ff' : '#5e5e5e')};
-  background-color: ${(props) => (props.ativo ? '#ffffff' : '#fcfcfc')};
+  border: 1px solid
+    ${(props) => (props.$ativo ? variaveis.azul : variaveis.cinza2)};
+  color: ${(props) => (props.$ativo ? variaveis.azul : variaveis.cinza5)};
+  background-color: ${(props) =>
+    props.$ativo ? variaveis.branco1 : variaveis.branco2};
   border-radius: 8px;
   :hover {
     cursor: pointer;
